@@ -29,6 +29,11 @@ const url = require('url');
 
 ////////////////////// SERVER ///////////////
 
+// this functions will be executed only once (synchronously) when the application starts, then the data read from this function 
+//can be used as many as we want without calling this function..... read once use multiple times in other functions
+const data = fs.readFileSync(`${__dirname}/json-data/data.json`, 'utf-8');
+const dataObject = JSON.parse(data);
+
 const server = http.createServer((req, res) =>{
     // console.log(req.url);
     const pathName = req.url;
@@ -37,6 +42,10 @@ const server = http.createServer((req, res) =>{
     }
     else if(pathName === '/product'){
         res.end('This is the PRODUCT page!');
+    }
+    else if(pathName === '/api'){
+        res.writeHead(200, {'Content-type': 'application/json'})
+        res.end(data);
     }
     else{
         res.writeHead(404, {
