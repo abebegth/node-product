@@ -29,20 +29,51 @@ const url = require('url');
 
 ////////////////////// SERVER ///////////////
 
+const replaceTemplate = (temp, product) =>{
+    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+    output = output.replace(/{%IMAGE%}/g, product.image);
+    output = output.replace(/{%PRICE%}/g, product.price);
+    output = output.replace(/{%FROM%}/g, product.from);
+    output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+    output = output.replace(/{%QUANTITY%}/g, product.quantity);
+    output = output.replace(/{%DESCRIPTION%}/g, product.description);
+    output = output.replace(/{%ID%}/g, product.id);
+
+    if(!product.organic){
+        output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
+    }
+
+    return output;
+    
+}
 // this functions will be executed only once (synchronously) when the application starts, then the data read from this function 
 //can be used as many as we want without calling this function..... read once use multiple times in other functions
+const tempIndex = fs.readFileSync(`${__dirname}/templates/index.html`, 'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/templates/card.html`, 'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-8');
 const data = fs.readFileSync(`${__dirname}/json-data/data.json`, 'utf-8');
+
 const dataObject = JSON.parse(data);
 
 const server = http.createServer((req, res) =>{
     // console.log(req.url);
     const pathName = req.url;
+
+    // Home page
     if(pathName === '/' || pathName === '/home'){
-        res.end('This is the HOME page!');
+        res.writeHead(200, {'Content-type': 'text/html'});
+        const cardsHtml = dataObject.map(el => replaceTemplate(tempCard, el)).join('');
+        const index = tempIndex.replace('{%PRODUCT_CARDS%}', cardsHtml)
+        // console.log(cardsHtml)
+        res.end(index);
     }
+    
+    // Products page
     else if(pathName === '/product'){
         res.end('This is the PRODUCT page!');
     }
+
+    // API page
     else if(pathName === '/api'){
         res.writeHead(200, {'Content-type': 'application/json'})
         res.end(data);

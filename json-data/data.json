@@ -23,25 +23,25 @@
   },
   {
     "id": 2,
-    "productName": "Apollo Broccoli",
-    "image": "🥦",
+    "productName": "Lemon",
+    "image": "🍋",
     "from": "Portugal",
     "nutrients": "Vitamin C, Vitamin K",
-    "quantity": "3 🥦",
+    "quantity": "3 🍋",
     "price": "5.50",
     "organic": true,
-    "description": "Broccoli is known to be a hearty and tasty vegetable which is rich in dozens of nutrients. It is said to pack the most nutritional punch of any vegetable. When we think about green vegetables to include in our diet, broccoli is one of the foremost veggies to come to our mind. Broccoli is a cruciferous vegetable and part of the cabbage family, which includes vegetables such as Brussel sprouts and kale. Although the tastes are different, broccoli and these other vegetables are from the same family."
+    "description": "Lemon is known to be a hearty and tasty vegetable which is rich in dozens of nutrients. It is said to pack the most nutritional punch of any vegetable. When we think about green vegetables to include in our diet, broccoli is one of the foremost veggies to come to our mind. Broccoli is a cruciferous vegetable and part of the cabbage family, which includes vegetables such as Brussel sprouts and kale. Although the tastes are different, broccoli and these other vegetables are from the same family."
   },
   {
     "id": 3,
-    "productName": "Baby Carrots",
-    "image": "🥕",
+    "productName": "Banana",
+    "image": "🍌",
     "from": "France",
     "nutrients": "Vitamin A, Vitamin K",
-    "quantity": "20 🥕",
+    "quantity": "20 🍌",
     "price": "3.00",
     "organic": true,
-    "description": "The carrot is a root vegetable that is often claimed to be the perfect health food. It is crunchy, tasty and highly nutritious. Carrots are a particularly good source of beta-carotene, fiber, vitamin K, potassium and antioxidants. Carrots have a number of health benefits. They are a weight loss friendly food and have been linked to lower cholesterol levels and improved eye health."
+    "description": "The Banana is a root vegetable that is often claimed to be the perfect health food. It is crunchy, tasty and highly nutritious. Carrots are a particularly good source of beta-carotene, fiber, vitamin K, potassium and antioxidants. Carrots have a number of health benefits. They are a weight loss friendly food and have been linked to lower cholesterol levels and improved eye health."
   },
   {
     "id": 4,
