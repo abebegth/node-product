@@ -44,23 +44,28 @@ const replaceTemplate = (temp, product) =>{
     }
 
     return output;
-    
+
 }
+
 // this functions will be executed only once (synchronously) when the application starts, then the data read from this function 
 //can be used as many as we want without calling this function..... read once use multiple times in other functions
 const tempIndex = fs.readFileSync(`${__dirname}/templates/index.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/templates/card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-8');
-const data = fs.readFileSync(`${__dirname}/json-data/data.json`, 'utf-8');
 
+const data = fs.readFileSync(`${__dirname}/json-data/data.json`, 'utf-8');
 const dataObject = JSON.parse(data);
+
 
 const server = http.createServer((req, res) =>{
     // console.log(req.url);
-    const pathName = req.url;
+    // console.log(url.parse(req.url, true));
+    const { query, pathname} = url.parse(req.url, true);
+
+    // const pathName = req.url;
 
     // Home page
-    if(pathName === '/' || pathName === '/home'){
+    if(pathname === '/' || pathname === '/home'){
         res.writeHead(200, {'Content-type': 'text/html'});
         const cardsHtml = dataObject.map(el => replaceTemplate(tempCard, el)).join('');
         const index = tempIndex.replace('{%PRODUCT_CARDS%}', cardsHtml)
@@ -69,15 +74,24 @@ const server = http.createServer((req, res) =>{
     }
     
     // Products page
-    else if(pathName === '/product'){
-        res.end('This is the PRODUCT page!');
+    else if(pathname === '/product'){
+        res.writeHead(200, {'Content-type': 'text/html'});
+
+        // console.log(query);
+
+        // figure out which product to display
+        const product = dataObject[query.id];
+        const output = replaceTemplate(tempProduct, product);
+        res.end(output);
     }
 
     // API page
-    else if(pathName === '/api'){
+    else if(pathname === '/api'){
         res.writeHead(200, {'Content-type': 'application/json'})
         res.end(data);
     }
+
+    // Not found page
     else{
         res.writeHead(404, {
             'Content-type': 'text/html',
