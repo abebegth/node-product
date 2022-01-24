@@ -1,0 +1,26 @@
+{
+  "name": "node-product",
+  "version": "1.0.0",
+  "description": "Learning Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abebegth/node-product.git"
+  },
+  "author": "Abebe Gietaneh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abebegth/node-product/issues"
+  },
+  "homepage": "https://github.com/abebegth/node-product#readme",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
